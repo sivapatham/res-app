@@ -49,6 +49,7 @@ DATABASE_URI = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.forma
     dbhost=os.environ['DBHOST'],
     dbname=os.environ['DBNAME']
 )
+print(DATABASE_URI)
 
 TIME_ZONE = 'UTC'
 
