@@ -50,4 +50,3 @@ DATABASE_URI = 'postgresql+psycopg2://{dbuser}:{dbpass}@{dbhost}/{dbname}'.forma
 )
 print(DATABASE_URI)
 
-

@@ -8,6 +8,8 @@ import json
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 
 # tok_url = "https://myvault.secretsvaultcloud.com/v1/token"
 # cred = {'grant_type':'password', 'username':'', 'password':'', 'provider':'thy-one'}
