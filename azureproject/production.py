@@ -19,8 +19,10 @@ CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_
 # print(DATABASE_URI)
 
 azcli_id = "ce2f4037-2d29-4573-a286-cbd5fb528424"
-azid_url = "http://169.254.129.3:8081/msi/token?api-version=2019-08-01&resource=https%3A%2F%2Fmanagement.azure.com%2F&client_id="+azcli_id
-azid_hdr = "a62a33f4-3fa6-4bac-b302-79d5c405762b"
+#http://169.254.129.3:8081/msi/token
+ep = os.environ['IDENTITY_ENDPOINT']
+azid_url = ep + "?api-version=2019-08-01&resource=https%3A%2F%2Fmanagement.azure.com%2F&client_id="+azcli_id
+azid_hdr = os.environ['IDENTITY_HEADER']
 hdrs = { "X-IDENTITY-HEADER" : azid_hdr }
 azres = requests.get(azid_url, headers=hdrs).json()
 az_tok = azres['access_token']
@@ -31,7 +33,7 @@ response = requests.post(tok_url, data=cred)
 res = response.json()
 tok = res['accessToken']
 
-api_url = "https://myvault.secretsvaultcloud.com/v1/secrets/demo/db/postgres/dyna"
+api_url = "https://myvault.secretsvaultcloud.com/v1/secrets/demo/db/postgres/awsdyna"
 headers =  {"Content-Type":"application/json", "Authorization": tok }
 response = requests.get(api_url, headers=headers)
 res = response.json()
